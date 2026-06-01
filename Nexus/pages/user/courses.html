@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>Course Catalog – Nexus</title>
+  <link rel="stylesheet" href="../../css/styles.css" />
+</head>
+<body>
+  <div class="app-layout">
+    <aside class="sidebar">
+      <div class="sidebar-logo">
+        <img src="../../assets/Application_Logo.png" alt="Nexus" onerror="this.style.display='none'" />
+        <span>NEXUS</span>
+      </div>
+      <nav class="sidebar-nav">
+        <div class="nav-section">Learning</div>
+        <a href="dashboard.html" class="nav-item">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="3" width="7" height="7" />
+            <rect x="14" y="3" width="7" height="7" />
+            <rect x="14" y="14" width="7" height="7" />
+            <rect x="3" y="14" width="7" height="7" />
+          </svg>
+          Dashboard
+        </a>
+        <a href="courses.html" class="nav-item active">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
+            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
+          </svg>
+          Course Catalog
+        </a>
+        <div class="nav-section">Account</div>
+        <a href="profile.html" class="nav-item">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+            <circle cx="12" cy="7" r="4" />
+          </svg>
+          Profile
+        </a>
+        <a href="certificates.html" class="nav-item">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="8" r="6" />
+            <path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11" />
+          </svg>
+          Certificates
+        </a>
+      </nav>
+      <div class="sidebar-footer">
+        <div class="flex items-center gap-2" style="margin-bottom:.75rem">
+          <div class="avatar" id="user-av">U</div>
+          <div>
+            <div class="text-sm font-medium" id="sidebar-user">User</div>
+            <div class="text-xs text-muted">Student</div>
+          </div>
+        </div>
+        <button class="btn btn-outline w-full btn-sm" id="logout-btn">Logout</button>
+      </div>
+    </aside>
+    <div class="main-area">
+      <div class="topbar">
+        <div class="topbar-left">
+          <h1>Course Catalog</h1>
+          <p>Browse all categories and courses</p>
+        </div>
+        <span id="course-count" class="text-sm text-muted"></span>
+      </div>
+      <div class="page-body space-y-6">
+        <div class="input-wrap has-l" style="max-width:30rem">
+          <span class="iicon-l"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2">
+              <circle cx="11" cy="11" r="8" />
+              <line x1="21" y1="21" x2="16.65" y2="16.65" />
+            </svg></span>
+          <input id="search-box" class="input" placeholder="Search courses or instructors…" />
+        </div>
+        <div>
+          <h2 class="font-medium mb-4"
+            style="font-size:.875rem;color:var(--muted-fg);text-transform:uppercase;letter-spacing:.06em">Categories
+          </h2>
+          <div class="cat-grid" id="cat-grid"></div>
+        </div>
+        <div>
+          <h2 class="font-medium mb-4"
+            style="font-size:.875rem;color:var(--muted-fg);text-transform:uppercase;letter-spacing:.06em">Courses</h2>
+          <div class="course-grid" id="course-grid"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="toast-container"></div>
+  <script src="../../js/utils.js"></script>
+  <script src="../../js/auth.js"></script>
+  <script src="../../js/courses.js"></script>
+</body>
+</html>

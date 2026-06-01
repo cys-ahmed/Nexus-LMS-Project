@@ -1,0 +1,233 @@
+.enroll-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1rem;
+    display: flex;
+    align-items: flex-start;
+    gap: .75rem;
+    transition: background .15s;
+}
+.enroll-card:hover {
+    background: var(--secondary);
+}
+.enroll-emoji {
+    font-size: 2rem;
+    width: 3rem;
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+.enroll-body {
+    flex: 1;
+    min-width: 0;
+}
+.enroll-title {
+    font-size: .875rem;
+    font-weight: 500;
+    margin-bottom: .2rem;
+}
+.enroll-meta {
+    font-size: .75rem;
+    color: var(--muted-fg);
+    margin-bottom: .5rem;
+}
+.profile-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: .5rem 0;
+    border-bottom: 1px solid var(--border);
+}
+.profile-row:last-child {
+    border-bottom: none;
+}
+.profile-label {
+    font-size: .8rem;
+    color: var(--muted-fg);
+}
+.profile-value {
+    font-size: .8rem;
+    font-weight: 500;
+}
+.cert-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+.cert-icon {
+    width: 3rem;
+    height: 3rem;
+    border-radius: var(--radius);
+    background: hsl(217, 91%, 60%, .12);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+.announce-card {
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1rem;
+    background: var(--card);
+}
+.announce-title {
+    font-size: .875rem;
+    font-weight: 500;
+}
+.announce-meta {
+    font-size: .75rem;
+    color: var(--muted-fg);
+    margin: .2rem 0 .5rem;
+}
+.announce-body {
+    font-size: .8rem;
+    color: var(--muted-fg);
+    line-height: 1.5;
+}
+.badge-critical {
+    background: hsl(0, 72%, 51%, .15);
+    color: hsl(0, 72%, 70%);
+    padding: .15rem .5rem;
+    border-radius: 9999px;
+    font-size: .7rem;
+    font-weight: 500;
+}
+.badge-high {
+    background: hsl(38, 92%, 50%, .15);
+    color: hsl(38, 92%, 65%);
+    padding: .15rem .5rem;
+    border-radius: 9999px;
+    font-size: .7rem;
+    font-weight: 500;
+}
+.badge-medium {
+    background: hsl(217, 91%, 60%, .15);
+    color: hsl(217, 91%, 75%);
+    padding: .15rem .5rem;
+    border-radius: 9999px;
+    font-size: .7rem;
+    font-weight: 500;
+}
+.badge-low {
+    background: hsl(142, 71%, 45%, .15);
+    color: hsl(142, 71%, 65%);
+    padding: .15rem .5rem;
+    border-radius: 9999px;
+    font-size: .7rem;
+    font-weight: 500;
+}
+.empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 4rem 1rem;
+    text-align: center;
+    color: var(--muted-fg);
+}
+.empty-state svg {
+    opacity: .3;
+    margin-bottom: 1rem;
+}
+.empty-state h3 {
+    font-size: .95rem;
+    font-weight: 500;
+    color: var(--foreground);
+    margin-bottom: .25rem;
+}
+.empty-state p {
+    font-size: .8rem;
+}
+.certificate-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 1.25rem;
+}
+.certificate-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+.certificate-card:hover {
+    border-color: var(--primary);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+}
+.certificate-badge {
+    width: 48px;
+    height: 48px;
+    background: linear-gradient(135deg, var(--primary), var(--primary-light));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+.certificate-badge svg {
+    stroke: white;
+}
+.certificate-content {
+    flex: 1;
+    min-width: 0;
+}
+.certificate-title {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.certificate-meta {
+    font-size: 0.875rem;
+    color: var(--muted-fg);
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+.certificate-id {
+    font-size: 0.75rem;
+    color: var(--muted-fg);
+    font-family: monospace;
+}
+.certificate-actions {
+    display: flex;
+    gap: 0.5rem;
+}
+.star-btn {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: var(--muted-fg);
+    cursor: pointer;
+    padding: 0.25rem;
+    transition: all 0.2s ease;
+}
+.star-btn:hover {
+    color: #f59e0b;
+    transform: scale(1.1);
+}
+.star-btn:active {
+    transform: scale(0.95);
+}
+.course-card {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.course-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}

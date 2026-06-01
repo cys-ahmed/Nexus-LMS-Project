@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>Profile – Nexus</title>
+    <link rel="stylesheet" href="../../css/styles.css" />
+    <link rel="stylesheet" href="../../css/user.css" />
+</head>
+<body>
+    <div class="app-layout">
+        <aside class="sidebar">
+            <div class="sidebar-logo">
+                <img src="../../assets/Application_Logo.png" alt="Nexus" onerror="this.style.display='none'" />
+                <span>NEXUS</span>
+            </div>
+            <nav class="sidebar-nav">
+                <div class="nav-section">Learning</div>
+                <a href="dashboard.html" class="nav-item">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="3" width="7" height="7" />
+                        <rect x="14" y="3" width="7" height="7" />
+                        <rect x="14" y="14" width="7" height="7" />
+                        <rect x="3" y="14" width="7" height="7" />
+                    </svg>
+                    Dashboard
+                </a>
+                <a href="courses.html" class="nav-item">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
+                        <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
+                    </svg>
+                    Course Catalog
+                </a>
+                <div class="nav-section">Account</div>
+                <a href="profile.html" class="nav-item active">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                        <circle cx="12" cy="7" r="4" />
+                    </svg>
+                    Profile
+                </a>
+                <a href="certificates.html" class="nav-item">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="8" r="6" />
+                        <path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11" />
+                    </svg>
+                    Certificates
+                </a>
+            </nav>
+            <div class="sidebar-footer">
+                <div class="flex items-center gap-2" style="margin-bottom:.75rem">
+                    <div class="avatar" id="user-av">U</div>
+                    <div>
+                        <div class="text-sm font-medium" id="sidebar-user">User</div>
+                        <div class="text-xs text-muted">Student</div>
+                    </div>
+                </div>
+                <button class="btn btn-outline w-full btn-sm" id="logout-btn">Logout</button>
+            </div>
+        </aside>
+        <div class="main-area">
+            <div class="topbar">
+                <div class="topbar-left">
+                    <h1>Profile</h1>
+                    <p>Manage your account settings and preferences</p>
+                </div>
+            </div>
+            <div class="page-body">
+                <div class="tabs-list cols-2" style="max-width:350px;margin-bottom:1.5rem">
+                    <button class="tab-btn active" data-tab="profile">Profile</button>
+                    <button class="tab-btn" data-tab="settings">Settings</button>
+                </div>
+                <div class="tab-panel active" id="tab-profile">
+                    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;max-width:1200px">
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="card-title">Profile Information</div>
+                            </div>
+                            <div class="card-content">
+                                <div class="flex items-center gap-4" style="margin-bottom:2rem">
+                                    <div class="avatar avatar-xl" id="profile-avatar">
+                                        <img src="../../assets/ProfilePic.png" alt="" id="avatar-img"
+                                            onerror="this.style.display='none';this.parentElement.textContent=this.parentElement.dataset.initials" />
+                                    </div>
+                                    <div style="flex:1">
+                                        <div class="text-lg font-medium" id="profile-name">User</div>
+                                        <div class="text-sm text-muted" id="profile-email">user@nexus.io</div>
+                                        <input type="file" id="avatar-upload" accept="image/*" style="display:none" />
+                                        <div class="flex gap-2" style="margin-top:.5rem">
+                                            <button class="btn btn-ghost btn-sm" id="change-avatar-btn">Change
+                                                Avatar</button>
+                                            <button class="btn btn-ghost btn-sm" id="remove-avatar-btn"
+                                                style="display:none;color:var(--destructive)">Remove</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="space-y-3">
+                                    <div>
+                                        <label class="label">Full Name</label>
+                                        <input class="input" id="input-name" placeholder="Enter your name" />
+                                    </div>
+                                    <div>
+                                        <label class="label">Email</label>
+                                        <input class="input" id="input-email" type="email"
+                                            placeholder="your@email.com" />
+                                    </div>
+                                    <div>
+                                        <label class="label">Bio</label>
+                                        <textarea class="textarea" id="input-bio"
+                                            placeholder="Tell us about yourself..." rows="3"></textarea>
+                                    </div>
+                                    <button class="btn btn-default w-full" id="save-profile-btn">Save Changes</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="card-title">Account Information</div>
+                            </div>
+                            <div class="card-content">
+                                <div class="space-y-2" style="margin-bottom:2rem">
+                                    <div class="flex justify-between text-sm">
+                                        <span class="text-muted">User ID</span>
+                                        <span id="user-id">—</span>
+                                    </div>
+                                    <div class="flex justify-between text-sm">
+                                        <span class="text-muted">Member Since</span>
+                                        <span id="member-since">—</span>
+                                    </div>
+                                    <div class="flex justify-between text-sm">
+                                        <span class="text-muted">Account Type</span>
+                                        <span id="account-type">Student</span>
+                                    </div>
+                                    <div class="flex justify-between text-sm">
+                                        <span class="text-muted">Email Verified</span>
+                                        <span style="color:var(--success)">✓ Verified</span>
+                                    </div>
+                                </div>
+                                <div style="border-top:1px solid var(--border);padding-top:1.5rem;margin-bottom:1.5rem">
+                                    <div class="text-sm font-medium" style="margin-bottom:1rem">Learning Statistics
+                                    </div>
+                                    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:.75rem">
+                                        <div
+                                            style="background:var(--secondary);border-radius:var(--radius);padding:1rem;text-align:center">
+                                            <div style="font-size:1.5rem;font-weight:700" id="stat-enrolled">0</div>
+                                            <div class="text-xs text-muted" style="margin-top:.25rem">Enrolled</div>
+                                        </div>
+                                        <div
+                                            style="background:var(--secondary);border-radius:var(--radius);padding:1rem;text-align:center">
+                                            <div style="font-size:1.5rem;font-weight:700" id="stat-completed">0</div>
+                                            <div class="text-xs text-muted" style="margin-top:.25rem">Completed</div>
+                                        </div>
+                                        <div
+                                            style="background:var(--secondary);border-radius:var(--radius);padding:1rem;text-align:center">
+                                            <div style="font-size:1.5rem;font-weight:700" id="stat-certificates">0</div>
+                                            <div class="text-xs text-muted" style="margin-top:.25rem">Certificates</div>
+                                        </div>
+                                        <div
+                                            style="background:var(--secondary);border-radius:var(--radius);padding:1rem;text-align:center">
+                                            <div style="font-size:1.5rem;font-weight:700" id="stat-hours">0h</div>
+                                            <div class="text-xs text-muted" style="margin-top:.25rem">Hours</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="border-top:1px solid var(--border);padding-top:1.5rem">
+                                    <div class="text-sm font-medium" style="margin-bottom:1rem">Security</div>
+                                    <button class="btn btn-outline w-full">Change Password</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-panel" id="tab-settings">
+                    <div style="max-width:600px">
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="card-title">Preferences</div>
+                            </div>
+                            <div class="card-content">
+                                <div class="space-y-3">
+                                    <div>
+                                        <label class="label">Language</label>
+                                        <select class="select" id="pref-language">
+                                            <option>English</option>
+                                            <option>Arabic</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <label class="label">Timezone</label>
+                                        <select class="select" id="pref-timezone">
+                                            <option>UTC</option>
+                                            <option>America/New_York</option>
+                                            <option>America/Los_Angeles</option>
+                                            <option>Europe/London</option>
+                                            <option>Amman/Jordan</option>
+                                        </select>
+                                    </div>
+                                    <div style="border-top:1px solid var(--border);padding-top:1rem;margin-top:1rem">
+                                        <div class="text-sm font-medium" style="margin-bottom:1rem">Notifications</div>
+                                        <div class="space-y-2">
+                                            <label class="flex items-center gap-2" style="cursor:pointer">
+                                                <input type="checkbox" checked />
+                                                <span class="text-sm">Email notifications for new courses</span>
+                                            </label>
+                                            <label class="flex items-center gap-2" style="cursor:pointer">
+                                                <input type="checkbox" checked />
+                                                <span class="text-sm">Email notifications for certificates</span>
+                                            </label>
+                                            <label class="flex items-center gap-2" style="cursor:pointer">
+                                                <input type="checkbox" />
+                                                <span class="text-sm">Weekly progress reports</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <button class="btn btn-default w-full" style="margin-top:1.5rem"
+                                        id="save-settings-btn">Save Settings</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="toast-container"></div>
+    <script src="../../js/utils.js"></script>
+    <script src="../../js/auth.js"></script>
+    <script src="../../js/profile.js"></script>
+</body>
+</html>

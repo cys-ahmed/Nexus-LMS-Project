@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>Course Info – Nexus</title>
+    <link rel="stylesheet" href="../../css/styles.css" />
+    <link rel="stylesheet" href="../../css/user.css" />
+</head>
+<body>
+    <div class="app-layout">
+        <aside class="sidebar">
+            <div class="sidebar-logo">
+                <img src="../../assets/Application_Logo.png" alt="Nexus" onerror="this.style.display='none'" />
+                <span>NEXUS</span>
+            </div>
+            <nav class="sidebar-nav">
+                <div class="nav-section">Learning</div>
+                <a href="dashboard.html" class="nav-item">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="3" width="7" height="7" />
+                        <rect x="14" y="3" width="7" height="7" />
+                        <rect x="14" y="14" width="7" height="7" />
+                        <rect x="3" y="14" width="7" height="7" />
+                    </svg>
+                    Dashboard
+                </a>
+                <a href="courses.html" class="nav-item active">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
+                        <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
+                    </svg>
+                    Course Catalog
+                </a>
+                <div class="nav-section">Account</div>
+                <a href="profile.html" class="nav-item">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                        <circle cx="12" cy="7" r="4" />
+                    </svg>
+                    Profile
+                </a>
+                <a href="certificates.html" class="nav-item">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="8" r="6" />
+                        <path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11" />
+                    </svg>
+                    Certificates
+                </a>
+            </nav>
+            <div class="sidebar-footer">
+                <div class="flex items-center gap-2" style="margin-bottom:.75rem">
+                    <div class="avatar" id="user-av">U</div>
+                    <div>
+                        <div class="text-sm font-medium" id="sidebar-user">User</div>
+                        <div class="text-xs text-muted">Student</div>
+                    </div>
+                </div>
+                <button class="btn btn-outline w-full btn-sm" id="logout-btn">Logout</button>
+            </div>
+        </aside>
+        <div class="main-area">
+            <div style="padding:1.5rem 2rem 0">
+                <a href="courses.html" class="btn btn-ghost btn-sm">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="19" y1="12" x2="5" y2="12" />
+                        <polyline points="12 19 5 12 12 5" />
+                    </svg>
+                    Back to Courses
+                </a>
+            </div>
+            <div class="page-body">
+                <div class="card" style="margin-bottom:1.5rem">
+                    <div style="display:grid;grid-template-columns:300px 1fr;gap:2rem">
+                        <div id="course-image"
+                            style="width:300px;height:180px;border-radius:var(--radius);background:linear-gradient(135deg, rgba(124,58,237,0.1), rgba(124,58,237,0.05));display:flex;align-items:center;justify-content:center;font-size:4rem;overflow:hidden">
+                            📚
+                        </div>
+                        <div>
+                            <div
+                                style="display:flex;align-items:start;justify-content:space-between;margin-bottom:1rem">
+                                <div style="flex:1">
+                                    <div class="text-xs text-muted" style="margin-bottom:.5rem" id="course-category">
+                                        Category</div>
+                                    <h1 style="font-size:1.75rem;font-weight:700;margin-bottom:.75rem"
+                                        id="course-title">Course Title</h1>
+                                    <div class="flex items-center gap-3" style="margin-bottom:1rem">
+                                        <div class="flex items-center gap-1"
+                                            style="font-size:.875rem;color:#f59e0b;font-weight:600">
+                                            ★ <span id="course-rating">4.8</span>
+                                        </div>
+                                        <div class="text-sm text-muted" id="course-students">24,300 students</div>
+                                        <div class="text-sm text-muted" id="course-level">All Levels</div>
+                                    </div>
+                                    <div class="flex items-center gap-2" style="margin-bottom:1rem">
+                                        <div class="avatar avatar-sm">IN</div>
+                                        <div>
+                                            <div class="text-sm font-medium" id="course-instructor">Instructor Name
+                                            </div>
+                                            <div class="text-xs text-muted">Course Instructor</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="text-align:right">
+                                    <div style="font-size:2rem;font-weight:700;margin-bottom:.5rem" id="course-price">
+                                        $89</div>
+                                    <button class="btn btn-default" id="enroll-btn" style="min-width:150px">
+                                        Enroll Now
+                                    </button>
+                                    <button class="btn btn-outline hidden" id="unenroll-btn" style="min-width:150px">
+                                        Unenroll
+                                    </button>
+                                    <div class="text-xs text-muted" style="margin-top:.5rem" id="enrollment-status">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tabs-list" style="margin-bottom:1.5rem;display:grid;grid-template-columns:repeat(4,1fr)">
+                    <button class="tab-btn active" data-tab="overview">Overview</button>
+                    <button class="tab-btn" data-tab="curriculum">Curriculum</button>
+                    <button class="tab-btn" data-tab="reviews">Reviews</button>
+                    <button class="tab-btn" data-tab="instructor">Instructor</button>
+                </div>
+                <div class="tab-panel active" id="tab-overview">
+                    <div style="display:grid;grid-template-columns:2fr 1fr;gap:1.5rem">
+                        <div>
+                            <div class="card">
+                                <div class="card-header">
+                                    <div class="card-title">About This Course</div>
+                                </div>
+                                <div class="card-content">
+                                    <p class="text-sm" id="course-description" style="line-height:1.8">
+                                        Course description will appear here...
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="card" style="margin-top:1.5rem">
+                                <div class="card-header">
+                                    <div class="card-title">What You'll Learn</div>
+                                </div>
+                                <div class="card-content">
+                                    <ul id="learning-objectives"
+                                        style="list-style:none;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:.75rem">
+                                        <li class="flex items-start gap-2">
+                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                                stroke="currentColor" stroke-width="2"
+                                                style="color:var(--success);flex-shrink:0;margin-top:.1rem">
+                                                <polyline points="20 6 9 17 4 12" />
+                                            </svg>
+                                            <span class="text-sm">Build modern web applications</span>
+                                        </li>
+                                        <li class="flex items-start gap-2">
+                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                                stroke="currentColor" stroke-width="2"
+                                                style="color:var(--success);flex-shrink:0;margin-top:.1rem">
+                                                <polyline points="20 6 9 17 4 12" />
+                                            </svg>
+                                            <span class="text-sm">Master core concepts</span>
+                                        </li>
+                                        <li class="flex items-start gap-2">
+                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                                stroke="currentColor" stroke-width="2"
+                                                style="color:var(--success);flex-shrink:0;margin-top:.1rem">
+                                                <polyline points="20 6 9 17 4 12" />
+                                            </svg>
+                                            <span class="text-sm">Work on real-world projects</span>
+                                        </li>
+                                        <li class="flex items-start gap-2">
+                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                                stroke="currentColor" stroke-width="2"
+                                                style="color:var(--success);flex-shrink:0;margin-top:.1rem">
+                                                <polyline points="20 6 9 17 4 12" />
+                                            </svg>
+                                            <span class="text-sm">Get job-ready skills</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="card">
+                                <div class="card-header">
+                                    <div class="card-title">Course Details</div>
+                                </div>
+                                <div class="card-content space-y-3">
+                                    <div class="flex justify-between text-sm">
+                                        <span class="text-muted">Duration</span>
+                                        <span class="font-medium">40 hours</span>
+                                    </div>
+                                    <div class="flex justify-between text-sm">
+                                        <span class="text-muted">Lectures</span>
+                                        <span class="font-medium">156 lectures</span>
+                                    </div>
+                                    <div class="flex justify-between text-sm">
+                                        <span class="text-muted">Level</span>
+                                        <span class="font-medium" id="detail-level">All Levels</span>
+                                    </div>
+                                    <div class="flex justify-between text-sm">
+                                        <span class="text-muted">Language</span>
+                                        <span class="font-medium">English</span>
+                                    </div>
+                                    <div class="flex justify-between text-sm">
+                                        <span class="text-muted">Certificate</span>
+                                        <span class="font-medium" style="color:var(--success)">✓ Included</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card" style="margin-top:1.5rem">
+                                <div class="card-header">
+                                    <div class="card-title">Requirements</div>
+                                </div>
+                                <div class="card-content">
+                                    <ul
+                                        style="list-style:disc;padding-left:1.25rem;font-size:.875rem;line-height:1.8;color:var(--muted-fg)">
+                                        <li>Basic computer skills</li>
+                                        <li>No prior experience required</li>
+                                        <li>Willingness to learn</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-panel" id="tab-curriculum">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title">Course Curriculum</div>
+                            <div class="text-sm text-muted">8 sections · 156 lectures · 40h total length</div>
+                        </div>
+                        <div class="card-content space-y-2" id="curriculum-list">
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-panel" id="tab-reviews">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title">Student Reviews</div>
+                        </div>
+                        <div class="card-content">
+                            <div
+                                style="display:grid;grid-template-columns:200px 1fr;gap:2rem;padding-bottom:2rem;border-bottom:1px solid var(--border);margin-bottom:2rem">
+                                <div style="text-align:center">
+                                    <div style="font-size:3rem;font-weight:700;margin-bottom:.5rem" id="avg-rating">
+                                        4.8</div>
+                                    <div style="color:#f59e0b;font-size:1.25rem;margin-bottom:.5rem">★★★★★</div>
+                                    <div class="text-sm text-muted" id="total-reviews">1,234 reviews</div>
+                                </div>
+                                <div style="display:flex;flex-direction:column;gap:.5rem;justify-content:center">
+                                    <div class="flex items-center gap-2">
+                                        <span class="text-sm" style="width:60px">5 stars</span>
+                                        <div
+                                            style="flex:1;height:8px;background:var(--secondary);border-radius:4px;overflow:hidden">
+                                            <div style="width:75%;height:100%;background:#f59e0b"></div>
+                                        </div>
+                                        <span class="text-sm text-muted" style="width:40px">75%</span>
+                                    </div>
+                                    <div class="flex items-center gap-2">
+                                        <span class="text-sm" style="width:60px">4 stars</span>
+                                        <div
+                                            style="flex:1;height:8px;background:var(--secondary);border-radius:4px;overflow:hidden">
+                                            <div style="width:15%;height:100%;background:#f59e0b"></div>
+                                        </div>
+                                        <span class="text-sm text-muted" style="width:40px">15%</span>
+                                    </div>
+                                    <div class="flex items-center gap-2">
+                                        <span class="text-sm" style="width:60px">3 stars</span>
+                                        <div
+                                            style="flex:1;height:8px;background:var(--secondary);border-radius:4px;overflow:hidden">
+                                            <div style="width:7%;height:100%;background:#f59e0b"></div>
+                                        </div>
+                                        <span class="text-sm text-muted" style="width:40px">7%</span>
+                                    </div>
+                                    <div class="flex items-center gap-2">
+                                        <span class="text-sm" style="width:60px">2 stars</span>
+                                        <div
+                                            style="flex:1;height:8px;background:var(--secondary);border-radius:4px;overflow:hidden">
+                                            <div style="width:2%;height:100%;background:#f59e0b"></div>
+                                        </div>
+                                        <span class="text-sm text-muted" style="width:40px">2%</span>
+                                    </div>
+                                    <div class="flex items-center gap-2">
+                                        <span class="text-sm" style="width:60px">1 star</span>
+                                        <div
+                                            style="flex:1;height:8px;background:var(--secondary);border-radius:4px;overflow:hidden">
+                                            <div style="width:1%;height:100%;background:#f59e0b"></div>
+                                        </div>
+                                        <span class="text-sm text-muted" style="width:40px">1%</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="add-review-section" class="hidden" style="margin-bottom:2rem">
+                                <div class="text-sm font-medium" style="margin-bottom:1rem">Leave a Review</div>
+                                <div class="space-y-3">
+                                    <div>
+                                        <label class="label">Rating</label>
+                                        <div class="flex gap-1" id="star-rating">
+                                            <button class="star-btn" data-rating="1">★</button>
+                                            <button class="star-btn" data-rating="2">★</button>
+                                            <button class="star-btn" data-rating="3">★</button>
+                                            <button class="star-btn" data-rating="4">★</button>
+                                            <button class="star-btn" data-rating="5">★</button>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <label class="label">Your Review</label>
+                                        <textarea class="textarea" id="review-text" rows="3"
+                                            placeholder="Share your experience with this course..."></textarea>
+                                    </div>
+                                    <button class="btn btn-default btn-sm" id="submit-review-btn">Submit Review</button>
+                                </div>
+                            </div>
+                            <div class="space-y-4" id="reviews-list">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-panel" id="tab-instructor">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title">About the Instructor</div>
+                        </div>
+                        <div class="card-content">
+                            <div class="flex items-start gap-4" style="margin-bottom:2rem">
+                                <div class="avatar avatar-xl" id="instructor-avatar">IN</div>
+                                <div style="flex:1">
+                                    <h3 class="text-lg font-medium" id="instructor-name">Instructor Name</h3>
+                                    <div class="text-sm text-muted" style="margin-bottom:1rem">Professional Instructor
+                                    </div>
+                                    <div
+                                        style="display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-top:1.5rem">
+                                        <div style="text-align:center">
+                                            <div class="text-xl font-bold">4.8</div>
+                                            <div class="text-xs text-muted">Rating</div>
+                                        </div>
+                                        <div style="text-align:center">
+                                            <div class="text-xl font-bold">12</div>
+                                            <div class="text-xs text-muted">Courses</div>
+                                        </div>
+                                        <div style="text-align:center">
+                                            <div class="text-xl font-bold">45K</div>
+                                            <div class="text-xs text-muted">Students</div>
+                                        </div>
+                                        <div style="text-align:center">
+                                            <div class="text-xl font-bold">8.5K</div>
+                                            <div class="text-xs text-muted">Reviews</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="text-sm" style="line-height:1.8;color:var(--muted-fg)">
+                                <p style="margin-bottom:1rem">
+                                    An experienced professional with years of industry experience and a passion for
+                                    teaching. Dedicated to helping students achieve their learning goals through
+                                    practical, hands-on instruction.
+                                </p>
+                                <p>
+                                    Has worked with leading companies and trained thousands of students worldwide.
+                                    Specializes in creating engaging, real-world focused content that prepares students
+                                    for success in their careers.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="toast-container"></div>
+    <script src="../../js/utils.js"></script>
+    <script src="../../js/auth.js"></script>
+    <script src="../../js/user-course-info.js"></script>
+</body>
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>Sign In – Nexus</title>
+  <meta name="description" content="Nexus – Online Course Platform. Sign in to access your dashboard." />
+  <link rel="stylesheet" href="../css/styles.css" />
+</head>
+<body>
+  <div class="auth-page">
+    <div class="auth-box">
+      <div class="auth-logo">
+        <img src="../assets/Application_Logo.png" alt="Nexus"
+          onerror="this.style.display='none';document.getElementById('logo-fb').style.display='flex'" />
+        <div id="logo-fb"
+          style="display:none;width:7rem;height:7rem;border-radius:50%;background:hsl(220,15%,12%);border:1px solid hsl(220,15%,20%);align-items:center;justify-content:center;margin:0 auto">
+          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="hsl(217,91%,60%)" stroke-width="1.5">
+            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
+          </svg>
+        </div>
+        <h1>NEXUS</h1>
+        <p>Online Course Platform</p>
+      </div>
+      <div class="auth-card">
+        <div class="auth-card-header">
+          <div class="auth-card-title">Welcome back</div>
+          <div class="auth-card-desc">Sign in to your account to continue</div>
+        </div>
+        <div class="auth-card-body">
+          <div id="err" class="banner error hidden" style="margin-bottom:1rem">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10" />
+              <line x1="12" y1="8" x2="12" y2="12" />
+              <line x1="12" y1="16" x2="12.01" y2="16" />
+            </svg>
+            <span id="err-text"></span>
+          </div>
+          <form id="login-form" class="space-y-4" novalidate>
+            <div>
+              <label class="label" for="u">Username or Email</label>
+              <div class="input-wrap has-l">
+                <span class="iicon-l"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                    stroke-width="2">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                    <circle cx="12" cy="7" r="4" />
+                  </svg></span>
+                <input id="u" class="input" type="text" placeholder="student" autocomplete="username" />
+              </div>
+            </div>
+            <div>
+              <label class="label" for="p">Password</label>
+              <div class="input-wrap has-l has-r">
+                <span class="iicon-l"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                    stroke-width="2">
+                    <rect x="3" y="11" width="18" height="11" rx="2" />
+                    <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+                  </svg></span>
+                <input id="p" class="input" type="password" placeholder="Enter your password"
+                  autocomplete="current-password" />
+                <button type="button" class="iicon-r" id="toggle-pw" aria-label="Show/hide password">
+                  <svg id="eye" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                    stroke-width="2">
+                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                    <circle cx="12" cy="12" r="3" />
+                  </svg>
+                  <svg id="eyeoff" class="hidden" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2">
+                    <path
+                      d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19" />
+                    <line x1="1" y1="1" x2="23" y2="23" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+            <button type="submit" class="btn btn-default w-full" style="height:2.5rem" id="login-btn">Sign In</button>
+          </form>
+        </div>
+      </div>
+      <p class="auth-footer">© 2025 Nexus Learning. All rights reserved.</p>
+    </div>
+  </div>
+  <div id="toast-container"></div>
+  <script src="../js/utils.js"></script>
+  <script src="../js/auth.js"></script>
+  <script>
+    if (isLoggedIn()) location.href = getDashboard(getCurrentUser());
+    document.getElementById('toggle-pw').onclick = () => {
+      const p = document.getElementById('p'); const show = p.type === 'password';
+      p.type = show ? 'text' : 'password';
+      document.getElementById('eye').classList.toggle('hidden', show);
+      document.getElementById('eyeoff').classList.toggle('hidden', !show);
+    };
+    document.getElementById('login-form').onsubmit = async e => {
+      e.preventDefault();
+      const u = document.getElementById('u').value.trim();
+      const p = document.getElementById('p').value;
+      const err = document.getElementById('err');
+      err.classList.add('hidden');
+      if (!u || !p) { document.getElementById('err-text').textContent = 'Please fill in all fields'; err.classList.remove('hidden'); return; }
+      const btn = document.getElementById('login-btn');
+      btn.disabled = true; btn.innerHTML = '<span class="spinner"></span>';
+      const r = await authLogin(u, p);
+      if (r.success) { location.href = getDashboard(r.user); }
+      else { document.getElementById('err-text').textContent = r.error; err.classList.remove('hidden'); btn.disabled = false; btn.textContent = 'Sign In'; }
+    };
+  </script>
+</body>
+</html>

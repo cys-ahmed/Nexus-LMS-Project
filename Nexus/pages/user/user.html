@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>User Panel – Nexus</title>
+  <link rel="stylesheet" href="../../css/styles.css" />
+  <link rel="stylesheet" href="../../css/user.css" />
+</head>
+<body>
+  <div class="app-layout">
+    <aside class="sidebar">
+      <div class="sidebar-logo">
+        <img src="../../assets/Application_Logo.png" alt="Nexus" onerror="this.style.display='none'" />
+        <span>NEXUS</span>
+      </div>
+      <nav class="sidebar-nav">
+        <div class="nav-section">Learning</div>
+        <a href="dashboard.html" class="nav-item">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="3" width="7" height="7" />
+            <rect x="14" y="3" width="7" height="7" />
+            <rect x="14" y="14" width="7" height="7" />
+            <rect x="3" y="14" width="7" height="7" />
+          </svg>
+          Dashboard
+        </a>
+        <a href="courses.html" class="nav-item">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
+            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
+          </svg>
+          Course Catalog
+        </a>
+        <div class="nav-section">Account</div>
+        <a href="profile.html" class="nav-item">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+            <circle cx="12" cy="7" r="4" />
+          </svg>
+          Profile
+        </a>
+        <a href="certificates.html" class="nav-item">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="8" r="6" />
+            <path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11" />
+          </svg>
+          Certificates
+        </a>
+        <a href="user.html" class="nav-item active">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+            <circle cx="12" cy="7" r="4" />
+          </svg>
+          My Profile
+        </a>
+      </nav>
+      <div class="sidebar-footer">
+        <div class="flex items-center gap-2" style="margin-bottom:.75rem">
+          <div class="avatar" id="user-av">U</div>
+          <div>
+            <div class="text-sm font-medium" id="sidebar-user">User</div>
+            <div class="text-xs text-muted">Student</div>
+          </div>
+        </div>
+        <button class="btn btn-outline w-full btn-sm" id="logout-btn">Logout</button>
+      </div>
+    </aside>
+    <div class="main-area">
+      <div class="topbar">
+        <div class="topbar-left">
+          <h1>User Panel</h1>
+          <p>Your learning profile and progress</p>
+        </div>
+      </div>
+      <div class="page-body">
+        <div class="tabs-list cols-4" style="max-width:600px;margin-bottom:1.5rem">
+          <button class="tab-btn active" data-tab="profile">Profile</button>
+          <button class="tab-btn" data-tab="progress">My Progress</button>
+          <button class="tab-btn" data-tab="certs">Certificates</button>
+          <button class="tab-btn" data-tab="announcements">Announcements</button>
+        </div>
+        <div class="tab-panel active" id="tab-profile">
+          <div style="display:grid;grid-template-columns:1fr 2fr;gap:1.25rem;align-items:start">
+            <div class="card">
+              <div class="card-header">
+                <div class="card-title">Profile Info</div>
+              </div>
+              <div class="card-content">
+                <div class="flex items-center gap-4" style="margin-bottom:1.25rem">
+                  <div class="avatar avatar-lg" id="profile-av">U</div>
+                  <div>
+                    <div class="flex items-center gap-2" style="flex-wrap:wrap">
+                      <span class="font-semibold" style="font-size:1.05rem" id="profile-name">User</span>
+                      <span class="badge badge-secondary" id="profile-role-badge">Student</span>
+                    </div>
+                    <div class="text-xs text-muted" style="margin-top:.15rem">Nexus Course Platform</div>
+                  </div>
+                </div>
+                <div class="space-y-2">
+                  <div class="profile-row"><span class="profile-label">Email</span><span class="profile-value"
+                      id="profile-email">—</span></div>
+                  <div class="profile-row"><span class="profile-label">Role</span><span class="profile-value"
+                      id="profile-role">Student</span></div>
+                  <div class="profile-row"><span class="profile-label">Member since</span><span class="profile-value"
+                      id="profile-joined">—</span></div>
+                  <div class="profile-row"><span class="profile-label">Session started</span><span class="profile-value"
+                      id="profile-login">—</span></div>
+                  <div style="padding-top:.75rem">
+                    <button class="btn btn-outline w-full btn-sm"
+                      onclick="toast({title:'Change password coming soon'})">Change Password</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-header">
+                <div class="card-title">Learning Statistics</div>
+              </div>
+              <div class="card-content">
+                <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;margin-bottom:1.25rem">
+                  <div style="background:var(--secondary);border-radius:var(--radius);padding:1rem;text-align:center">
+                    <div style="font-size:1.75rem;font-weight:700;color:var(--primary)" id="stat-enrolled">—</div>
+                    <div class="text-xs text-muted" style="margin-top:.25rem">Enrolled Courses</div>
+                  </div>
+                  <div style="background:var(--secondary);border-radius:var(--radius);padding:1rem;text-align:center">
+                    <div style="font-size:1.75rem;font-weight:700;color:var(--success)" id="stat-completed">—</div>
+                    <div class="text-xs text-muted" style="margin-top:.25rem">Completed</div>
+                  </div>
+                  <div style="background:var(--secondary);border-radius:var(--radius);padding:1rem;text-align:center">
+                    <div style="font-size:1.75rem;font-weight:700;color:hsl(38,92%,50%)" id="stat-hours">—</div>
+                    <div class="text-xs text-muted" style="margin-top:.25rem">Hours Watched</div>
+                  </div>
+                  <div style="background:var(--secondary);border-radius:var(--radius);padding:1rem;text-align:center">
+                    <div style="font-size:1.75rem;font-weight:700" id="stat-avg">—</div>
+                    <div class="text-xs text-muted" style="margin-top:.25rem">Avg. Progress</div>
+                  </div>
+                </div>
+                <div style="background:var(--secondary);border-radius:var(--radius);padding:1rem">
+                  <p class="text-sm font-medium" style="margin-bottom:.5rem">Interests</p>
+                  <div class="flex" style="flex-wrap:wrap;gap:.4rem" id="interests-list"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tab-panel" id="tab-progress">
+          <div class="card">
+            <div class="card-header">
+              <div>
+                <div class="card-title">My Courses</div>
+                <div class="card-desc">Track your learning progress</div>
+              </div>
+              <a href="courses.html" class="btn btn-default btn-sm">Browse More</a>
+            </div>
+            <div class="card-content space-y-3" id="progress-list"></div>
+          </div>
+        </div>
+        <div class="tab-panel" id="tab-certs">
+          <div class="card">
+            <div class="card-header">
+              <div class="card-title">My Certificates</div>
+              <div class="card-desc">Courses you've completed</div>
+            </div>
+            <div class="card-content space-y-3" id="certs-list"></div>
+          </div>
+        </div>
+        <div class="tab-panel" id="tab-announcements">
+          <div class="card">
+            <div class="card-header">
+              <div>
+                <div class="card-title">Announcements</div>
+                <div class="card-desc">Platform broadcasts from admin</div>
+              </div>
+            </div>
+            <div class="card-content space-y-3" id="user-ann-list">
+              <div class="empty-state">
+                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
+                  <path d="M13.73 21a2 2 0 0 1-3.46 0" />
+                </svg>
+                <h3>No announcements</h3>
+                <p>Check back later for platform updates</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="toast-container"></div>
+  <script src="../../js/utils.js"></script>
+  <script src="../../js/auth.js"></script>
+  <script src="../../js/user.js"></script>
+</body>
+</html>

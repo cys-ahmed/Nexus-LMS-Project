@@ -1,0 +1,36 @@
+# OS-generated files
+.DS_Store
+**/.DS_Store
+Thumbs.db
+
+# Config files
+Nexus/backend/Dockerfile
+Nexus/backend/database/docker-compose.yml
+Nexus/backend/database/filebeat.yml
+Nexus/startup/nexus-apache.conf
+
+# Environment files
+.env
+.env.*
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+venv/
+.venv/
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Logs
+*.log
+
+# Certificates
+*.crt
+*.key
+*.pem

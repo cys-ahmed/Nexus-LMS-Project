@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8"/>
+<title>Nexus – Online Course Platform</title>
+<script>
+  try {
+    const u = JSON.parse(localStorage.getItem('nx_user'));
+    if (u) {
+      location.href = 'pages/' + ((u.role||'').toLowerCase()==='admin' ? 'admin.html' : 'dashboard.html');
+    } else {
+      location.href = 'pages/login.html';
+    }
+  } catch(e) {
+    location.href = 'pages/login.html';
+  }
+</script>
+</head><body></body></html>

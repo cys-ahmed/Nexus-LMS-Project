@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>Admin Dashboard – Nexus</title>
+    <link rel="stylesheet" href="../../css/styles.css" />
+    <link rel="stylesheet" href="../../css/admin.css" />
+</head>
+<body>
+    <div class="app-layout">
+        <aside class="sidebar">
+            <div class="sidebar-logo">
+                <img src="../../assets/Application_Logo.png" alt="Nexus" onerror="this.style.display='none'" />
+                <span>NEXUS</span>
+            </div>
+            <nav class="sidebar-nav">
+                <div class="nav-section">Management</div>
+                <a href="dashboard.html" class="nav-item active">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="3" width="7" height="7" />
+                        <rect x="14" y="3" width="7" height="7" />
+                        <rect x="14" y="14" width="7" height="7" />
+                        <rect x="3" y="14" width="7" height="7" />
+                    </svg>
+                    Dashboard
+                </a>
+                <a href="courses.html" class="nav-item">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
+                        <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
+                    </svg>
+                    Courses
+                </a>
+                <a href="admin.html" class="nav-item">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                        <circle cx="9" cy="7" r="4" />
+                        <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+                        <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                    </svg>
+                    Users & Settings
+                </a>
+            </nav>
+            <div class="sidebar-footer">
+                <div class="flex items-center gap-2" style="margin-bottom:.75rem">
+                    <div class="avatar avatar-lg" id="user-av">
+                        <img src="../../assets/ProfilePic.png" alt=""
+                            onerror="this.style.display='none';this.parentElement.textContent='AD'" />
+                    </div>
+                    <div>
+                        <div class="text-sm font-medium" id="sidebar-user">Admin</div>
+                        <div class="text-xs text-muted">Administrator</div>
+                    </div>
+                </div>
+                <button class="btn btn-outline w-full btn-sm" id="logout-btn">Logout</button>
+            </div>
+        </aside>
+        <div class="main-area">
+            <div class="topbar">
+                <div class="topbar-left">
+                    <h1>Admin Dashboard</h1>
+                    <p>Platform overview and management</p>
+                </div>
+                <div class="flex gap-2">
+                    <button class="btn btn-outline btn-sm" onclick="location.reload()">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <polyline points="23 4 23 10 17 10" />
+                            <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10" />
+                        </svg>
+                        Refresh
+                    </button>
+                </div>
+            </div>
+            <div class="page-body">
+                <div class="stats-grid">
+                    <div class="stat-card-admin">
+                        <div class="stat-header">
+                            <div>
+                                <div class="stat-label-admin">Total Students</div>
+                                <div class="stat-value-admin" id="stat-students">0</div>
+                            </div>
+                            <div class="stat-icon-admin" style="background:hsl(217,91%,60%,.12);color:hsl(217,91%,60%)">
+                                👥</div>
+                        </div>
+                        <div class="stat-change up" id="stat-students-change">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <polyline points="18 15 12 9 6 15" />
+                            </svg>
+                            <span>+12% from last month</span>
+                        </div>
+                    </div>
+                    <div class="stat-card-admin">
+                        <div class="stat-header">
+                            <div>
+                                <div class="stat-label-admin">Active Courses</div>
+                                <div class="stat-value-admin" id="stat-courses">0</div>
+                            </div>
+                            <div class="stat-icon-admin" style="background:hsl(142,71%,45%,.12);color:hsl(142,71%,45%)">
+                                📚</div>
+                        </div>
+                        <div class="stat-change up" id="stat-courses-change">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <polyline points="18 15 12 9 6 15" />
+                            </svg>
+                            <span>+3 new this month</span>
+                        </div>
+                    </div>
+                    <div class="stat-card-admin">
+                        <div class="stat-header">
+                            <div>
+                                <div class="stat-label-admin">Total Enrollments</div>
+                                <div class="stat-value-admin" id="stat-enrollments">0</div>
+                            </div>
+                            <div class="stat-icon-admin" style="background:hsl(38,92%,50%,.12);color:hsl(38,92%,50%)">📊
+                            </div>
+                        </div>
+                        <div class="stat-change up" id="stat-enrollments-change">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <polyline points="18 15 12 9 6 15" />
+                            </svg>
+                            <span>+156 this week</span>
+                        </div>
+                    </div>
+                    <div class="stat-card-admin">
+                        <div class="stat-header">
+                            <div>
+                                <div class="stat-label-admin">Revenue</div>
+                                <div class="stat-value-admin" id="stat-revenue">$0</div>
+                            </div>
+                            <div class="stat-icon-admin" style="background:hsl(142,71%,45%,.12);color:hsl(142,71%,45%)">
+                                💰</div>
+                        </div>
+                        <div class="stat-change up" id="stat-revenue-change">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <polyline points="18 15 12 9 6 15" />
+                            </svg>
+                            <span>+8% from last month</span>
+                        </div>
+                    </div>
+                </div>
+                <h2 class="font-medium mb-3"
+                    style="font-size:.875rem;color:var(--muted-fg);text-transform:uppercase;letter-spacing:.06em">Quick
+                    Actions</h2>
+                <div class="quick-actions">
+                    <a href="admin.html" class="action-btn">
+                        <div class="action-icon">➕</div>
+                        <div class="action-label">Add New Course</div>
+                    </a>
+                    <a href="admin.html" class="action-btn">
+                        <div class="action-icon">👤</div>
+                        <div class="action-label">Manage Users</div>
+                    </a>
+                    <a href="admin.html" class="action-btn">
+                        <div class="action-icon">📢</div>
+                        <div class="action-label">Send Announcement</div>
+                    </a>
+                    <a href="#" class="action-btn"
+                        onclick="toast({title:'Coming Soon',desc:'Analytics dashboard'});return false">
+                        <div class="action-icon">📈</div>
+                        <div class="action-label">View Analytics</div>
+                    </a>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <div>
+                            <div class="card-title">Course Management</div>
+                            <div class="card-desc">Manage courses and track enrollments</div>
+                        </div>
+                        <div class="flex gap-2">
+                            <input type="text" id="course-search" class="input" placeholder="Search courses..."
+                                style="width:200px" />
+                        </div>
+                    </div>
+                    <div class="card-content-flush">
+                        <div class="course-table-wrap">
+                            <div class="course-row course-header">
+                                <div>Course</div>
+                                <div>Category</div>
+                                <div>Enrollments</div>
+                                <div>Revenue</div>
+                                <div>Status</div>
+                            </div>
+                            <div id="courses-list"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="overlay" id="enrollments-modal">
+        <div class="modal modal-lg">
+            <div class="modal-title">Course Enrollments</div>
+            <div class="modal-desc" id="modal-course-title"></div>
+            <div class="space-y-3">
+                <div
+                    style="display:flex;justify-content:space-between;align-items:center;padding:.75rem;background:var(--secondary);border-radius:var(--radius)">
+                    <div>
+                        <div class="text-sm font-medium">Total Enrollments</div>
+                        <div class="text-xs text-muted">Students enrolled in this course</div>
+                    </div>
+                    <div class="text-2xl font-bold" id="modal-enrollment-count">0</div>
+                </div>
+                <div class="enrollment-list" id="enrollment-list"></div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-ghost btn-sm" id="close-enrollments">Close</button>
+                <button class="btn btn-default btn-sm" onclick="toast({title:'Export feature coming soon'})">Export
+                    List</button>
+            </div>
+        </div>
+    </div>
+    <div class="overlay" id="edit-course-modal">
+        <div class="modal">
+            <div class="modal-title">Edit Course</div>
+            <div class="space-y-3">
+                <div><label class="label">Title</label><input id="edit-title" class="input" /></div>
+                <div><label class="label">Instructor</label><input id="edit-instructor" class="input" /></div>
+                <div class="grid-cols-2">
+                    <div><label class="label">Price ($)</label><input id="edit-price" class="input" type="number"
+                            min="0" /></div>
+                    <div>
+                        <label class="label">Status</label>
+                        <select id="edit-status" class="select">
+                            <option value="published">Published</option>
+                            <option value="draft">Draft</option>
+                            <option value="archived">Archived</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-ghost btn-sm" id="cancel-edit">Cancel</button>
+                <button class="btn btn-default btn-sm" id="save-edit">Save Changes</button>
+            </div>
+        </div>
+    </div>
+    <div id="toast-container"></div>
+    <script src="../../js/utils.js"></script>
+    <script src="../../js/auth.js"></script>
+    <script src="../../js/admin-dashboard.js"></script>
+</body>
+</html>

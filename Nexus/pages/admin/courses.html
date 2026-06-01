@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>Course Management – Nexus Admin</title>
+    <link rel="stylesheet" href="../../css/styles.css" />
+    <link rel="stylesheet" href="../../css/admin.css" />
+</head>
+<body>
+    <div class="app-layout">
+        <aside class="sidebar">
+            <div class="sidebar-logo">
+                <img src="../../assets/Application_Logo.png" alt="Nexus" onerror="this.style.display='none'" />
+                <span>NEXUS</span>
+            </div>
+            <nav class="sidebar-nav">
+                <div class="nav-section">Management</div>
+                <a href="dashboard.html" class="nav-item">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="3" width="7" height="7" />
+                        <rect x="14" y="3" width="7" height="7" />
+                        <rect x="14" y="14" width="7" height="7" />
+                        <rect x="3" y="14" width="7" height="7" />
+                    </svg>
+                    Dashboard
+                </a>
+                <a href="courses.html" class="nav-item active">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
+                        <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
+                    </svg>
+                    Courses
+                </a>
+                <a href="admin.html" class="nav-item">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                        <circle cx="9" cy="7" r="4" />
+                        <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+                        <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                    </svg>
+                    Users & Settings
+                </a>
+            </nav>
+            <div class="sidebar-footer">
+                <div class="flex items-center gap-2" style="margin-bottom:.75rem">
+                    <div class="avatar avatar-lg" id="user-av">
+                        <img src="../../assets/ProfilePic.png" alt=""
+                            onerror="this.style.display='none';this.parentElement.textContent='AD'" />
+                    </div>
+                    <div>
+                        <div class="text-sm font-medium" id="sidebar-user">Admin</div>
+                        <div class="text-xs text-muted">Administrator</div>
+                    </div>
+                </div>
+                <button class="btn btn-outline w-full btn-sm" id="logout-btn">Logout</button>
+            </div>
+        </aside>
+        <div class="main-area">
+            <div class="topbar">
+                <div class="topbar-left">
+                    <h1>Course Management</h1>
+                    <p>Add, edit, and manage platform courses</p>
+                </div>
+            </div>
+            <div class="page-body">
+                <div class="filter-bar">
+                    <div class="input-wrap has-l" style="flex:1;max-width:300px">
+                        <span class="iicon-l"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2">
+                                <circle cx="11" cy="11" r="8" />
+                                <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                            </svg></span>
+                        <input id="search-box" class="input" placeholder="Search courses..." />
+                    </div>
+                    <div style="display:flex;gap:.5rem;flex-wrap:wrap">
+                        <button class="filter-chip active" data-filter="all">All</button>
+                        <button class="filter-chip" data-filter="published">Published</button>
+                        <button class="filter-chip" data-filter="draft">Draft</button>
+                        <button class="filter-chip" data-filter="archived">Archived</button>
+                    </div>
+                    <div style="margin-left:auto;font-size:.875rem;color:var(--muted-fg)" id="course-count">0 courses
+                    </div>
+                </div>
+                <div class="course-grid-admin" id="courses-grid"></div>
+            </div>
+        </div>
+    </div>
+    <div class="overlay" id="course-modal">
+        <div class="modal">
+            <div class="modal-title" id="modal-title">Add New Course</div>
+            <div class="space-y-3">
+                <div><label class="label">Title *</label><input id="c-title" class="input" placeholder="Course title" />
+                </div>
+                <div>
+                    <label class="label">Category</label>
+                    <select id="c-cat" class="select">
+                        <option value="Web Development">Web Development</option>
+                        <option value="Data Science">Data Science</option>
+                        <option value="Cybersecurity">Cybersecurity</option>
+                        <option value="UI/UX Design">UI/UX Design</option>
+                        <option value="Mobile Dev">Mobile Dev</option>
+                        <option value="DevOps & Cloud">DevOps & Cloud</option>
+                        <option value="AI & ML">AI & ML</option>
+                        <option value="Business">Business</option>
+                    </select>
+                </div>
+                <div><label class="label">Instructor *</label><input id="c-instructor" class="input"
+                        placeholder="Instructor name" /></div>
+                <div class="grid-cols-2">
+                    <div><label class="label">Price ($)</label><input id="c-price" class="input" type="number" min="0"
+                            placeholder="0" /></div>
+                    <div>
+                        <label class="label">Level</label>
+                        <select id="c-level" class="select">
+                            <option value="Beginner">Beginner</option>
+                            <option value="Intermediate">Intermediate</option>
+                            <option value="All Levels">All Levels</option>
+                        </select>
+                    </div>
+                </div>
+                <div>
+                    <label class="label">Status</label>
+                    <select id="c-status" class="select">
+                        <option value="draft">Draft</option>
+                        <option value="published">Published</option>
+                        <option value="archived">Archived</option>
+                    </select>
+                </div>
+                <div><label class="label">Description</label><textarea id="c-desc" class="textarea"
+                        placeholder="Course description (optional)"></textarea></div>
+                <div id="c-err" class="text-xs hidden" style="color:var(--destructive)"></div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-ghost btn-sm" id="cancel-course">Cancel</button>
+                <button class="btn btn-default btn-sm" id="save-course-btn">Save Course</button>
+            </div>
+        </div>
+    </div>
+    <div class="overlay" id="enrollments-modal">
+        <div class="modal">
+            <div class="modal-title">Enrolled Students</div>
+            <div class="modal-desc" id="modal-course-name"></div>
+            <div class="space-y-3">
+                <div style="background:var(--secondary);padding:1rem;border-radius:var(--radius);text-align:center">
+                    <div class="text-2xl font-bold" id="modal-enrollment-count">0</div>
+                    <div class="text-xs text-muted">Total Enrollments</div>
+                </div>
+                <div style="max-height:300px;overflow-y:auto" id="enrollment-list"></div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-ghost btn-sm" id="close-enrollments">Close</button>
+            </div>
+        </div>
+    </div>
+    <div id="toast-container"></div>
+    <script src="../../js/utils.js"></script>
+    <script src="../../js/auth.js"></script>
+    <script src="../../js/admin-courses.js"></script>
+</body>
+</html>

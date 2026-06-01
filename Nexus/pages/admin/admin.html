@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>Admin Panel – Nexus</title>
+  <link rel="stylesheet" href="../../css/styles.css" />
+  <link rel="stylesheet" href="../../css/admin.css" />
+  <style>
+    .resp-box {
+      background: var(--secondary);
+      border-radius: var(--radius);
+      padding: 1rem
+    }
+    .resp-box p {
+      font-size: .875rem;
+      font-weight: 500;
+      margin-bottom: .5rem
+    }
+    .resp-box ul {
+      list-style: disc;
+      padding-left: 1.25rem;
+      font-size: .8rem;
+      color: var(--muted-fg);
+      line-height: 1.8
+    }
+  </style>
+</head>
+<body>
+  <div class="app-layout">
+    <aside class="sidebar">
+      <div class="sidebar-logo">
+        <img src="../../assets/Application_Logo.png" alt="Nexus" onerror="this.style.display='none'" />
+        <span>NEXUS</span>
+      </div>
+      <nav class="sidebar-nav">
+        <div class="nav-section">Management</div>
+        <a href="dashboard.html" class="nav-item">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="3" width="7" height="7" />
+            <rect x="14" y="3" width="7" height="7" />
+            <rect x="14" y="14" width="7" height="7" />
+            <rect x="3" y="14" width="7" height="7" />
+          </svg>
+          Dashboard
+        </a>
+        <a href="courses.html" class="nav-item">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
+            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
+          </svg>
+          Courses
+        </a>
+        <a href="admin.html" class="nav-item active">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+            <circle cx="9" cy="7" r="4" />
+            <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+            <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+          </svg>
+          Users & Settings
+        </a>
+      </nav>
+      <div class="sidebar-footer">
+        <div class="flex items-center gap-2" style="margin-bottom:.75rem">
+          <div class="avatar avatar-lg" id="user-av">
+            <img src="../../assets/ProfilePic.png" alt=""
+              onerror="this.style.display='none';this.parentElement.textContent='AD'" />
+          </div>
+          <div>
+            <div class="text-sm font-medium" id="sidebar-user">Admin</div>
+            <div class="text-xs text-muted">Administrator</div>
+          </div>
+        </div>
+        <button class="btn btn-outline w-full btn-sm" id="logout-btn">Logout</button>
+      </div>
+    </aside>
+    <div class="main-area">
+      <div class="topbar">
+        <div class="topbar-left">
+          <h1>Admin Panel</h1>
+          <p>Platform Administration & Course Management</p>
+        </div>
+      </div>
+      <div class="page-body">
+        <div class="tabs-list"
+          style="max-width:800px;margin-bottom:1.5rem;display:grid;grid-template-columns:repeat(5,1fr)">
+          <button class="tab-btn active" data-tab="overview">Overview</button>
+          <button class="tab-btn" data-tab="users">Users</button>
+          <button class="tab-btn" data-tab="courses">Courses</button>
+          <button class="tab-btn" data-tab="announcements">Announcements</button>
+          <button class="tab-btn" data-tab="settings">Settings</button>
+        </div>
+        <div class="tab-panel active" id="tab-overview">
+          <div class="grid-3" style="display:grid;grid-template-columns:1fr 2fr;gap:1.25rem;align-items:start">
+            <div class="card">
+              <div class="card-header">
+                <div class="card-title">Profile Info</div>
+              </div>
+              <div class="card-content">
+                <div class="flex items-center gap-4" style="margin-bottom:1.5rem">
+                  <div class="avatar avatar-xl" id="profile-av">
+                    <img src="../../assets/ProfilePic.png" alt=""
+                      onerror="this.style.display='none';this.parentElement.textContent='AD'" />
+                  </div>
+                  <div>
+                    <div class="text-lg font-medium" id="profile-name">admin</div>
+                    <div class="text-sm text-muted" id="profile-role">Admin</div>
+                    <div class="text-xs text-muted" style="margin-top:.25rem" id="profile-platform">Nexus Course
+                      Platform
+                    </div>
+                  </div>
+                </div>
+                <div class="space-y-6">
+                  <div class="flex justify-between text-sm">
+                    <span class="text-muted">Email</span>
+                    <span id="profile-email">admin@nexus.io</span>
+                  </div>
+                  <div class="flex justify-between text-sm">
+                    <span class="text-muted">User ID</span>
+                    <span id="profile-id">ADM-001</span>
+                  </div>
+                  <div class="flex justify-between text-sm">
+                    <span class="text-muted">Last Login</span>
+                    <span id="profile-login">Apr 30, 2026</span>
+                  </div>
+                </div>
+                <button class="btn btn-outline w-full" style="margin-top:2rem">Change Password</button>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-header">
+                <div class="card-title">Admin Responsibilities</div>
+              </div>
+              <div class="card-content">
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem">
+                  <div class="resp-box">
+                    <p>Responsibilities</p>
+                    <ul>
+                      <li>Manage course catalog and categories</li>
+                      <li>Add, edit and remove students</li>
+                      <li>Post and manage announcements</li>
+                      <li>Monitor enrollment and activity</li>
+                    </ul>
+                  </div>
+                  <div class="resp-box">
+                    <p>Privileges</p>
+                    <ul>
+                      <li>Full access to all courses and users</li>
+                      <li>Platform configuration settings</li>
+                      <li>Announcement broadcasting</li>
+                      <li>Analytics and reporting access</li>
+                    </ul>
+                  </div>
+                </div>
+                <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:.75rem;margin-top:1.25rem">
+                  <div
+                    style="background:var(--secondary);border-radius:var(--radius);padding:.875rem;text-align:center">
+                    <div style="font-size:1.5rem;font-weight:700" id="ov-users">—</div>
+                    <div class="text-xs text-muted" style="margin-top:.2rem">Total Users</div>
+                  </div>
+                  <div
+                    style="background:var(--secondary);border-radius:var(--radius);padding:.875rem;text-align:center">
+                    <div style="font-size:1.5rem;font-weight:700" id="ov-courses">—</div>
+                    <div class="text-xs text-muted" style="margin-top:.2rem">Courses</div>
+                  </div>
+                  <div
+                    style="background:var(--secondary);border-radius:var(--radius);padding:.875rem;text-align:center">
+                    <div style="font-size:1.5rem;font-weight:700" id="ov-ann">—</div>
+                    <div class="text-xs text-muted" style="margin-top:.2rem">Announcements</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tab-panel" id="tab-users">
+          <div class="card">
+            <div class="card-header">
+              <div>
+                <div class="card-title">User Management</div>
+                <div class="card-desc">Manage student and admin accounts</div>
+              </div>
+              <button class="btn btn-default btn-sm" id="open-add-user-btn">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+                  <circle cx="9" cy="7" r="4" />
+                  <line x1="19" y1="8" x2="19" y2="14" />
+                  <line x1="22" y1="11" x2="16" y2="11" />
+                </svg>
+                Add User
+              </button>
+            </div>
+            <div class="card-content space-y-2" id="users-list">
+              <div class="empty-state">
+                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                  <circle cx="9" cy="7" r="4" />
+                  <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+                  <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                </svg>
+                <h3>No users found</h3>
+                <p>Add a user to get started</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tab-panel" id="tab-courses">
+          <div class="card">
+            <div class="card-header">
+              <div>
+                <div class="card-title">Course Management</div>
+                <div class="card-desc">Add and manage platform courses</div>
+              </div>
+              <button class="btn btn-default btn-sm" id="open-add-course-btn">+ Add Course</button>
+            </div>
+            <div class="card-content-flush table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Course</th>
+                    <th>Category</th>
+                    <th>Instructor</th>
+                    <th>Students</th>
+                    <th>Price</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody id="courses-tbody"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="tab-panel" id="tab-announcements">
+          <div class="card">
+            <div class="card-header">
+              <div>
+                <div class="card-title">Announcements</div>
+                <div class="card-desc">Broadcasts visible to all students</div>
+              </div>
+              <div class="flex gap-2">
+                <button class="btn btn-destructive btn-sm hidden" id="clear-all-ann-btn">Clear All</button>
+                <button class="btn btn-default btn-sm" id="open-ann-btn">+ New Announcement</button>
+              </div>
+            </div>
+            <div class="card-content space-y-3" id="ann-list">
+              <div class="empty-state">
+                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
+                  <path d="M13.73 21a2 2 0 0 1-3.46 0" />
+                </svg>
+                <h3>No announcements yet</h3>
+                <p>Create an announcement to broadcast to all students</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tab-panel" id="tab-settings">
+          <div class="grid-cols-2">
+            <div class="card">
+              <div class="card-header">
+                <div class="card-title">Platform Settings</div>
+              </div>
+              <div class="card-content">
+                <div class="space-y-3">
+                  <div>
+                    <label class="label">Platform Name</label>
+                    <input class="input" id="setting-platform-name" value="Nexus Course Platform" />
+                  </div>
+                  <div>
+                    <label class="label">Admin Email</label>
+                    <input class="input" id="setting-admin-email" type="email" value="admin@nexus.io" />
+                  </div>
+                  <div>
+                    <label class="label">Support Email</label>
+                    <input class="input" id="setting-support-email" type="email" placeholder="support@nexus.io" />
+                  </div>
+                  <div>
+                    <label class="label">Platform Description</label>
+                    <textarea class="textarea" id="setting-description" rows="3"
+                      placeholder="Brief description of your platform...">Online learning platform for professional development</textarea>
+                  </div>
+                  <div style="border-top:1px solid var(--border);padding-top:1rem;margin-top:1rem">
+                    <div class="text-sm font-medium" style="margin-bottom:1rem">Regional Settings</div>
+                    <div class="space-y-3">
+                      <div>
+                        <label class="label">Default Language</label>
+                        <select class="select" id="setting-language">
+                          <option>English</option>
+                          <option>Spanish</option>
+                          <option>French</option>
+                          <option>German</option>
+                        </select>
+                      </div>
+                      <div>
+                        <label class="label">Default Timezone</label>
+                        <select class="select" id="setting-timezone">
+                          <option>UTC</option>
+                          <option>America/New_York</option>
+                          <option>America/Los_Angeles</option>
+                          <option>Europe/London</option>
+                          <option>Asia/Tokyo</option>
+                        </select>
+                      </div>
+                      <div>
+                        <label class="label">Currency</label>
+                        <select class="select" id="setting-currency">
+                          <option>USD ($)</option>
+                          <option>EUR (€)</option>
+                          <option>GBP (£)</option>
+                          <option>JPY (¥)</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="space-y-4">
+              <div class="card">
+                <div class="card-header">
+                  <div class="card-title">System Settings</div>
+                </div>
+                <div class="card-content">
+                  <div class="space-y-4">
+                    <div>
+                      <div class="text-sm font-medium" style="margin-bottom:1rem">User Registration</div>
+                      <div class="space-y-2">
+                        <label class="flex items-center gap-2" style="cursor:pointer">
+                          <input type="checkbox" id="setting-allow-registration" checked />
+                          <span class="text-sm">Allow new user registration</span>
+                        </label>
+                        <label class="flex items-center gap-2" style="cursor:pointer">
+                          <input type="checkbox" id="setting-email-verification" checked />
+                          <span class="text-sm">Require email verification</span>
+                        </label>
+                        <label class="flex items-center gap-2" style="cursor:pointer">
+                          <input type="checkbox" id="setting-admin-approval" />
+                          <span class="text-sm">Require admin approval for new users</span>
+                        </label>
+                      </div>
+                    </div>
+                    <div style="border-top:1px solid var(--border);padding-top:1rem">
+                      <div class="text-sm font-medium" style="margin-bottom:1rem">Course Settings</div>
+                      <div class="space-y-2">
+                        <label class="flex items-center gap-2" style="cursor:pointer">
+                          <input type="checkbox" id="setting-auto-enroll" />
+                          <span class="text-sm">Auto-enroll users in free courses</span>
+                        </label>
+                        <label class="flex items-center gap-2" style="cursor:pointer">
+                          <input type="checkbox" id="setting-certificates" checked />
+                          <span class="text-sm">Enable certificate generation</span>
+                        </label>
+                        <label class="flex items-center gap-2" style="cursor:pointer">
+                          <input type="checkbox" id="setting-course-reviews" checked />
+                          <span class="text-sm">Allow course reviews and ratings</span>
+                        </label>
+                      </div>
+                    </div>
+                    <div style="border-top:1px solid var(--border);padding-top:1rem">
+                      <div class="text-sm font-medium" style="margin-bottom:1rem">Notifications</div>
+                      <div class="space-y-2">
+                        <label class="flex items-center gap-2" style="cursor:pointer">
+                          <input type="checkbox" id="setting-email-notifications" checked />
+                          <span class="text-sm">Send email notifications</span>
+                        </label>
+                        <label class="flex items-center gap-2" style="cursor:pointer">
+                          <input type="checkbox" id="setting-announcement-emails" checked />
+                          <span class="text-sm">Email announcements to all users</span>
+                        </label>
+                        <label class="flex items-center gap-2" style="cursor:pointer">
+                          <input type="checkbox" id="setting-weekly-digest" />
+                          <span class="text-sm">Send weekly activity digest</span>
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card">
+                <div class="card-header">
+                  <div class="card-title">Change Password</div>
+                </div>
+                <div class="card-content">
+                  <div class="space-y-2">
+                    <div>
+                      <label class="label text-sm" style="margin-bottom:.25rem">Current Password</label>
+                      <input class="input" id="admin-cur-pw" type="password" placeholder="Enter current password" />
+                    </div>
+                    <div>
+                      <label class="label text-sm" style="margin-bottom:.25rem">New Password</label>
+                      <input class="input" id="admin-new-pw" type="password" placeholder="Enter new password" />
+                    </div>
+                    <div>
+                      <label class="label text-sm" style="margin-bottom:.25rem">Confirm New Password</label>
+                      <input class="input" id="admin-confirm-pw" type="password" placeholder="Confirm new password" />
+                    </div>
+                    <div id="admin-pw-err" class="text-xs hidden" style="color:var(--destructive)"></div>
+                    <button class="btn btn-default w-full" id="admin-change-pw-btn" style="margin-top:.5rem">Update Password</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div style="margin-top:1.5rem;max-width:1200px">
+            <div class="card">
+              <div class="card-content">
+                <div class="flex justify-between items-center">
+                  <div>
+                    <div class="text-sm font-medium">Save Settings</div>
+                    <div class="text-xs text-muted" style="margin-top:.25rem">Changes will be applied immediately</div>
+                  </div>
+                  <div class="flex gap-2">
+                    <button class="btn btn-ghost btn-sm" id="reset-settings-btn">Reset to Default</button>
+                    <button class="btn btn-default btn-sm" id="save-settings-btn">Save All Settings</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  <div class="overlay" id="add-user-modal">
+    <div class="modal">
+      <div class="modal-title">Add User</div>
+      <div class="modal-desc">Create a new student or admin account.</div>
+      <div class="space-y-3">
+        <div><label class="label">Username *</label><input id="new-username" class="input"
+            placeholder="Enter username" /></div>
+        <div><label class="label">Email</label><input id="new-email" class="input" type="email"
+            placeholder="student@nexus.io" /></div>
+        <div>
+          <label class="label">Role</label>
+          <select id="new-role" class="select">
+            <option value="Student" selected>Student</option>
+            <option value="Admin">Admin</option>
+          </select>
+        </div>
+        <div style="background:var(--secondary);border-radius:var(--radius);padding:.75rem">
+          <p class="text-xs font-medium" style="margin-bottom:.25rem">Temporary Password</p>
+          <p class="text-xs text-muted">Auto-generated. Will be shown upon creation.</p>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-ghost btn-sm" id="cancel-add-user">Cancel</button>
+        <button class="btn btn-default btn-sm" id="save-user-btn">Create User</button>
+      </div>
+    </div>
+  </div>
+  <div class="overlay" id="delete-user-modal">
+    <div class="modal">
+      <div class="modal-title">Confirm Deletion</div>
+      <div class="modal-desc">Are you sure you want to delete this user? This cannot be undone.</div>
+      <div class="modal-footer">
+        <button class="btn btn-ghost btn-sm" id="cancel-del-user">Cancel</button>
+        <button class="btn btn-destructive btn-sm" id="confirm-del-user">Delete</button>
+      </div>
+    </div>
+  </div>
+  <div class="overlay" id="add-course-modal">
+    <div class="modal">
+      <div class="modal-title">Add New Course</div>
+      <div class="space-y-3">
+        <div><label class="label">Title *</label><input id="c-title" class="input" placeholder="Course title" /></div>
+        <div>
+          <label class="label">Category</label>
+          <select id="c-cat" class="select">
+            <option value="Web Development">Web Development</option>
+            <option value="Data Science">Data Science</option>
+            <option value="Cybersecurity">Cybersecurity</option>
+            <option value="UI/UX Design">UI/UX Design</option>
+            <option value="Mobile Dev">Mobile Dev</option>
+            <option value="DevOps & Cloud">DevOps &amp; Cloud</option>
+            <option value="AI & ML">AI &amp; ML</option>
+            <option value="Business">Business</option>
+          </select>
+        </div>
+        <div><label class="label">Instructor *</label><input id="c-instructor" class="input"
+            placeholder="Instructor name" /></div>
+        <div class="grid-cols-2">
+          <div><label class="label">Price ($)</label><input id="c-price" class="input" type="number" min="0"
+              placeholder="0" /></div>
+          <div>
+            <label class="label">Level</label>
+            <select id="c-level" class="select">
+              <option value="Beginner">Beginner</option>
+              <option value="Intermediate">Intermediate</option>
+              <option value="All Levels">All Levels</option>
+            </select>
+          </div>
+        </div>
+        <div>
+          <label class="label">Course Image</label>
+          <input type="file" id="c-image" class="input" accept="image/*" style="padding:.5rem" />
+          <div class="text-xs text-muted" style="margin-top:.25rem">Upload a course thumbnail (max 2MB)</div>
+          <div id="c-image-preview" style="margin-top:.5rem;display:none">
+            <img id="c-image-preview-img"
+              style="max-width:200px;max-height:120px;border-radius:var(--radius);border:1px solid var(--border)" />
+          </div>
+        </div>
+        <div id="c-err" class="text-xs hidden" style="color:var(--destructive)"></div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-ghost btn-sm" id="cancel-add-course">Cancel</button>
+        <button class="btn btn-default btn-sm" id="save-course-btn">Add Course</button>
+      </div>
+    </div>
+  </div>
+  <div class="overlay" id="ann-modal">
+    <div class="modal">
+      <div class="modal-title">New Announcement</div>
+      <div class="space-y-3">
+        <div><label class="label">Title *</label><input id="ann-title" class="input" placeholder="Announcement title" />
+        </div>
+        <div><label class="label">Message *</label><textarea id="ann-body" class="textarea"
+            placeholder="Write your announcement…"></textarea></div>
+        <div>
+          <label class="label">Priority</label>
+          <select id="ann-sev" class="select">
+            <option value="low">Normal</option>
+            <option value="medium">Important</option>
+            <option value="high">Urgent</option>
+            <option value="critical">Critical</option>
+          </select>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-ghost btn-sm" id="cancel-ann">Cancel</button>
+        <button class="btn btn-default btn-sm" id="save-ann-btn">Broadcast</button>
+      </div>
+    </div>
+  </div>
+  <div id="toast-container"></div>
+  <script src="../../js/utils.js"></script>
+  <script src="../../js/auth.js"></script>
+  <script src="../../js/admin.js"></script>
+</body>
+</html>
