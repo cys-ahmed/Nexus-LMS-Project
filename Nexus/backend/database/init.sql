@@ -68,7 +68,10 @@ INSERT IGNORE INTO courses (title, category, instructor, price, level, status, e
     ('Ethical Hacking A–Z',          'Cybersecurity',   'Marcus Chen',         79,  'All Levels',  'published', '🔐', 'assets/courses_img/ethical_hacking.png','Complete ethical hacking and penetration testing course from zero to expert.'),
     ('UI/UX Design with Figma',      'UI/UX Design',    'Emma Whitfield',      55,  'Beginner',    'draft',     '🎨', 'assets/courses_img/ui_ux.png',          'Design beautiful user interfaces with Figma, from wireframes to prototypes.'),
     ('Docker & Kubernetes Complete', 'DevOps & Cloud',  'Mumshad Mannambeth',  95,  'Intermediate','published', '🐳', 'assets/courses_img/docker.png',         'Master containerization and orchestration with Docker and Kubernetes.'),
-    ('Deep Learning Specialization', 'AI & ML',         'Andrew Ng',           0,   'Intermediate','published', '🤖', 'assets/courses_img/Deep_Learning.png',  'Deep dive into neural networks, CNNs, RNNs, and modern AI architectures.');
+    ('Deep Learning Specialization', 'AI & ML',         'Andrew Ng',           0,   'Intermediate','published', '🤖', 'assets/courses_img/Deep_Learning.png',  'Deep dive into neural networks, CNNs, RNNs, and modern AI architectures.'),
+    ('Kubernetes Fundamentals',      'DevOps & Cloud',  'Priya Nair',          69,  'Beginner',    'published', '☸️', 'assets/courses_img/docker.png',         'Understand Kubernetes architecture, deployments, services, and cluster operations.'),
+    ('Splunk for Security Analysts', 'Cybersecurity',   'Lena Morris',         74,  'Intermediate','published', '📊', 'assets/courses_img/ethical_hacking.png','Learn SIEM, log analysis, detections, and incident response using Splunk.'),
+    ('Generative AI for Business',   'AI & ML',         'Daniel Park',         59,  'All Levels',  'published', '✨', 'assets/courses_img/Deep_Learning.png',  'Build practical GenAI workflows, prompt strategies, and business use cases.');
 
 INSERT IGNORE INTO enrollments (user_id, course_id, progress) VALUES
     (2, 1, 72),
