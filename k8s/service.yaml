@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: nexus-lms
+  labels:
+    app: nexus-lms
+spec:
+  type: LoadBalancer
+  selector:
+    app: nexus-lms
+  ports:
+    - name: http
+      protocol: TCP
+      port: 80
+      targetPort: 8080
